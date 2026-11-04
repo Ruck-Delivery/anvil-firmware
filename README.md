@@ -4,16 +4,16 @@ Public Anvil firmware OTA binaries (no app source). The Ruck app installs the la
 
 ## Which Ruck app works with which firmware
 
-| App ↓ · Firmware → | 2026.11.04 | 2026.11.02 | 2026.11.01 | 2026.10.31 | 2026.10.30 | 2026.10.20 | 2026.10.11 |
-|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| **1.45.0** | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
-| **1.44.0** | ✅ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
-| **1.43.0** | ⚠️ | ✅ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
-| **1.42.0** | ⚠️ | ⚠️ | ✅ | ✅ | ⚠️ | ⚠️ | ⚠️ |
-| **1.41.0** | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ✅ | ⚠️ | ⚠️ |
-| **1.40.0** | ⛔ | ⛔ | ⛔ | ⛔ | ⛔ | ✅ | ✅ |
-| **1.39.0** | ⛔ | ⛔ | ⛔ | ⛔ | ⛔ | ⚠️ | ✅ |
-| **1.38.0** | ⛔ | ⛔ | ⛔ | ⛔ | ⛔ | ⚠️ | ✅ |
+| App ↓ · Firmware → | 2026.11.04.1 | 2026.11.04 | 2026.11.02 | 2026.11.01 | 2026.10.31 | 2026.10.30 | 2026.10.20 | 2026.10.11 |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| **1.45.0** | ✅ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| **1.44.0** | ⚠️ | ✅ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| **1.43.0** | ⚠️ | ⚠️ | ✅ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| **1.42.0** | ⚠️ | ⚠️ | ⚠️ | ✅ | ✅ | ⚠️ | ⚠️ | ⚠️ |
+| **1.41.0** | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ✅ | ⚠️ | ⚠️ |
+| **1.40.0** | ⛔ | ⛔ | ⛔ | ⛔ | ⛔ | ⛔ | ✅ | ✅ |
+| **1.39.0** | ⛔ | ⛔ | ⛔ | ⛔ | ⛔ | ⛔ | ⚠️ | ✅ |
+| **1.38.0** | ⛔ | ⛔ | ⛔ | ⛔ | ⛔ | ⛔ | ⚠️ | ✅ |
 
 ✅ everything works · ⚠️ works, and a feature waits for the older side to update (the release tables say which) · ⛔ not together: the Anvil holds the update at "Update the Ruck app first" · ❔ published without a check
 
@@ -21,6 +21,7 @@ Public Anvil firmware OTA binaries (no app source). The Ruck app installs the la
 
 | Firmware | Published | Needs app | Everything from app | An older app misses | Breaking | Checked against apps |
 |---|---|---|---|---|---|---|
+| **2026.11.04.1** | 2026-11-04 | 1.41.0 | 1.45.0 | Apps before 1.45.0: after two missed nights Anvil now catches up at any hour, but these apps still show a clock time ("Installs tonight at ...") and offer Not tonight, which then only restarts the count. The update installs either way, and holding D0 during a silent update switches Anvil on in every app. 1.43.0 and 1.42.0 also miss what 2026.11.04 added. | no | 1.44.0, 1.43.0, 1.42.0 (code review) |
 | **2026.11.04** | 2026-11-04 | 1.41.0 | 1.44.0 | Apps 1.41.0 to 1.43.0: no Vibration switch, so an Anvil the newer app set to stay still stays still (a factory reset turns it back on), and its reset and error reports don't reach the cloud through the app. 1.41.0 and 1.42.0 also miss what 2026.11.02 added; 1.41.0 has no self-test. | no | 1.43.0, 1.42.0, 1.41.0 (code review) |
 | **2026.11.02** | 2026-11-02 | 1.41.0 | 1.43.0 | 1.41.0 and 1.42.0: no caller announcement (the call only rings), no factory reset from the app, and after a reset with the buttons they keep trying to reconnect the wiped Anvil. 1.41.0: no self-test. | no | 1.43.0, 1.42.0, 1.41.0 (code review) |
 | **2026.11.01** | 2026-11-01 | 1.41.0 | 1.42.0 | 1.41.0: no self-test in the device sheet. | no | 1.42.0, 1.41.0, 1.40.0 (code review) |
@@ -33,7 +34,7 @@ Public Anvil firmware OTA binaries (no app source). The Ruck app installs the la
 
 | App | Published | Needs firmware | Everything from firmware | Older firmware misses | Breaking | Checked against firmware |
 |---|---|---|---|---|---|---|
-| **1.45.0** | 2026-11-04 | any | next | Before next: Anvil never catches up after missed nights, so the "Installs next time Anvil is charging near Wi-Fi it knows" line never shows. Before 2026.11.04: the Vibration switch does nothing, and the Anvil's reset and error reports don't reach the cloud. Before 2026.11.02: no caller announcement or factory reset from the app. Before 2026.10.31: no self-test. Before 2026.10.30: no head start, stored voice notes, video review or overnight update. | no | 2026.11.04, 2026.11.02, 2026.11.01 (code review) |
+| **1.45.0** | 2026-11-04 | any | 2026.11.04.1 | Before 2026.11.04.1: Anvil never catches up after missed nights, so the "Installs next time Anvil is charging near Wi-Fi it knows" line never shows. Before 2026.11.04: the Vibration switch does nothing, and the Anvil's reset and error reports don't reach the cloud. Before 2026.11.02: no caller announcement or factory reset from the app. Before 2026.10.31: no self-test. Before 2026.10.30: no head start, stored voice notes, video review or overnight update. | no | 2026.11.04, 2026.11.02, 2026.11.01 (code review) |
 | **1.44.0** | 2026-11-04 | any | 2026.11.04 | Before 2026.11.04: the Vibration switch does nothing, and the Anvil's reset and error reports don't reach the cloud. Before 2026.11.02: no caller announcement or factory reset from the app. Before 2026.10.31: no self-test. Before 2026.10.30: no head start, stored voice notes, video review or overnight update. | no | 2026.11.02, 2026.11.01, 2026.10.31 (code review) |
 | **1.43.0** | 2026-11-02 | any | 2026.11.02 | Before 2026.11.02: no caller announcement or factory reset from the app. Before 2026.10.31: no self-test. Before 2026.10.30: no head start, stored voice notes, video review or overnight update. | no | 2026.11.02, 2026.11.01, 2026.10.31 (code review) |
 | **1.42.0** | 2026-10-31 | any | 2026.10.31 | Before 2026.10.31: no self-test. Before 2026.10.30: no head start, stored voice notes, video review or overnight update. | no | 2026.10.31, 2026.10.30, 2026.10.20 (code review) |
