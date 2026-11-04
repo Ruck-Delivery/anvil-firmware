@@ -6,6 +6,7 @@ Public Anvil firmware OTA binaries (no app source). The Ruck app installs the la
 
 | App ↓ · Firmware → | 2026.11.04 | 2026.11.02 | 2026.11.01 | 2026.10.31 | 2026.10.30 | 2026.10.20 | 2026.10.11 |
 |---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| **1.45.0** | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
 | **1.44.0** | ✅ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
 | **1.43.0** | ⚠️ | ✅ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
 | **1.42.0** | ⚠️ | ⚠️ | ✅ | ✅ | ⚠️ | ⚠️ | ⚠️ |
@@ -32,6 +33,7 @@ Public Anvil firmware OTA binaries (no app source). The Ruck app installs the la
 
 | App | Published | Needs firmware | Everything from firmware | Older firmware misses | Breaking | Checked against firmware |
 |---|---|---|---|---|---|---|
+| **1.45.0** | 2026-11-04 | any | next | Before next: Anvil never catches up after missed nights, so the "Installs next time Anvil is charging near Wi-Fi it knows" line never shows. Before 2026.11.04: the Vibration switch does nothing, and the Anvil's reset and error reports don't reach the cloud. Before 2026.11.02: no caller announcement or factory reset from the app. Before 2026.10.31: no self-test. Before 2026.10.30: no head start, stored voice notes, video review or overnight update. | no | 2026.11.04, 2026.11.02, 2026.11.01 (code review) |
 | **1.44.0** | 2026-11-04 | any | 2026.11.04 | Before 2026.11.04: the Vibration switch does nothing, and the Anvil's reset and error reports don't reach the cloud. Before 2026.11.02: no caller announcement or factory reset from the app. Before 2026.10.31: no self-test. Before 2026.10.30: no head start, stored voice notes, video review or overnight update. | no | 2026.11.02, 2026.11.01, 2026.10.31 (code review) |
 | **1.43.0** | 2026-11-02 | any | 2026.11.02 | Before 2026.11.02: no caller announcement or factory reset from the app. Before 2026.10.31: no self-test. Before 2026.10.30: no head start, stored voice notes, video review or overnight update. | no | 2026.11.02, 2026.11.01, 2026.10.31 (code review) |
 | **1.42.0** | 2026-10-31 | any | 2026.10.31 | Before 2026.10.31: no self-test. Before 2026.10.30: no head start, stored voice notes, video review or overnight update. | no | 2026.10.31, 2026.10.30, 2026.10.20 (code review) |
