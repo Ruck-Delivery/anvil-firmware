@@ -6,6 +6,7 @@ Public Anvil firmware OTA binaries (no app source). The Ruck app installs the la
 
 | App ↓ · Firmware → | 2026.11.06 | 2026.11.04.1 | 2026.11.04 | 2026.11.02 | 2026.11.01 | 2026.10.31 | 2026.10.30 | 2026.10.20 |
 |---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| **1.46.1** | ✅ | ✅ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
 | **1.46.0** | ✅ | ✅ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
 | **1.45.1** | ✅ | ✅ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
 | **1.45.0** | ✅ | ✅ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
@@ -13,7 +14,6 @@ Public Anvil firmware OTA binaries (no app source). The Ruck app installs the la
 | **1.43.0** | ⚠️ | ⚠️ | ⚠️ | ✅ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
 | **1.42.0** | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ✅ | ✅ | ⚠️ | ⚠️ |
 | **1.41.0** | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ✅ | ⚠️ |
-| **1.40.0** | ⛔ | ⛔ | ⛔ | ⛔ | ⛔ | ⛔ | ⛔ | ✅ |
 
 ✅ everything works · ⚠️ works, and a feature waits for the older side to update (the release tables say which) · ⛔ not together: the Anvil holds the update at "Update the Ruck app first" · ❔ published without a check
 
@@ -34,6 +34,7 @@ Public Anvil firmware OTA binaries (no app source). The Ruck app installs the la
 
 | App | Published | Needs firmware | Everything from firmware | Older firmware misses | Breaking | Checked against firmware |
 |---|---|---|---|---|---|---|
+| **1.46.1** | 2026-11-09 | any | 2026.11.04.1 | Before 2026.11.04.1: Anvil never catches up after missed nights, so the "Installs next time Anvil is charging near Wi-Fi it knows" line never shows. Before 2026.11.04: the Vibration switch does nothing, and the Anvil's reset and error reports don't reach the cloud. Before 2026.11.02: no caller announcement or factory reset from the app. Before 2026.10.31: no self-test. Before 2026.10.30: no head start, stored voice notes, video review or overnight update. Before 2026.11.06: a video transfer still retries every missed join and reopens Anvil's Wi-Fi when it closes, but its report carries no count of the phones Anvil heard at its Wi-Fi, and Anvil's Wi-Fi closes 60 s after the first ask even while the phone keeps trying (the app asks for it again). | no | 2026.11.04.1, 2026.11.04, 2026.11.02 (no Anvil-facing change since 1.46.0) |
 | **1.46.0** | 2026-11-06 | any | 2026.11.04.1 | Before 2026.11.04.1: Anvil never catches up after missed nights, so the "Installs next time Anvil is charging near Wi-Fi it knows" line never shows. Before 2026.11.04: the Vibration switch does nothing, and the Anvil's reset and error reports don't reach the cloud. Before 2026.11.02: no caller announcement or factory reset from the app. Before 2026.10.31: no self-test. Before 2026.10.30: no head start, stored voice notes, video review or overnight update. Before 2026.11.06: a video transfer still retries every missed join and reopens Anvil's Wi-Fi when it closes, but its report carries no count of the phones Anvil heard at its Wi-Fi, and Anvil's Wi-Fi closes 60 s after the first ask even while the phone keeps trying (the app asks for it again). | no | 2026.11.04.1, 2026.11.04, 2026.11.02 (code review: no command, event or characteristic changed, only the phone's own copy while it is on the Anvil's Wi-Fi, and leaving that Wi-Fi when a failed transfer is dismissed (phone-side OS calls the app already made on success); and the app now resends a Wi-Fi join or an update after a Wi-Fi miss (the same join and anvil_ota writes every firmware already takes); and a video transfer is now a goal that resends TransferStoredVideos (15) to reopen Anvil's Wi-Fi after it closes, which every firmware with a video catalog takes (a repeat while its Wi-Fi is open only re-sends wifi_ready); the app reads ap_station and the ap counts on error when present and works without them; while a join waits on the owner's Join, the app repeats TransferStoredVideos every 25 s (firmware with a catalog re-sends wifi_ready for a repeat, and firmware after 2026.11.04.1 also restarts the minute it waits for a phone), and a catalog wifi_ready this app did not ask for is no longer answered with TransferComplete; Wi-Fi telemetry (anvil_wifi_join) reads only status fields every firmware already sends (state, error, failCode, rssi, rejoinError, rejoinCode), absent ones left out) |
 | **1.45.1** | 2026-11-05 | any | 2026.11.04.1 | Before 2026.11.04.1: Anvil never catches up after missed nights, so the "Installs next time Anvil is charging near Wi-Fi it knows" line never shows. Before 2026.11.04: the Vibration switch does nothing, and the Anvil's reset and error reports don't reach the cloud. Before 2026.11.02: no caller announcement or factory reset from the app. Before 2026.10.31: no self-test. Before 2026.10.30: no head start, stored voice notes, video review or overnight update. | no | 2026.11.04, 2026.11.02, 2026.11.01 (no Anvil-facing change since 1.45.0) |
 | **1.45.0** | 2026-11-04 | any | 2026.11.04.1 | Before 2026.11.04.1: Anvil never catches up after missed nights, so the "Installs next time Anvil is charging near Wi-Fi it knows" line never shows. Before 2026.11.04: the Vibration switch does nothing, and the Anvil's reset and error reports don't reach the cloud. Before 2026.11.02: no caller announcement or factory reset from the app. Before 2026.10.31: no self-test. Before 2026.10.30: no head start, stored voice notes, video review or overnight update. | no | 2026.11.04, 2026.11.02, 2026.11.01 (code review) |
@@ -41,7 +42,6 @@ Public Anvil firmware OTA binaries (no app source). The Ruck app installs the la
 | **1.43.0** | 2026-11-02 | any | 2026.11.02 | Before 2026.11.02: no caller announcement or factory reset from the app. Before 2026.10.31: no self-test. Before 2026.10.30: no head start, stored voice notes, video review or overnight update. | no | 2026.11.02, 2026.11.01, 2026.10.31 (code review) |
 | **1.42.0** | 2026-10-31 | any | 2026.10.31 | Before 2026.10.31: no self-test. Before 2026.10.30: no head start, stored voice notes, video review or overnight update. | no | 2026.10.31, 2026.10.30, 2026.10.20 (code review) |
 | **1.41.0** | 2026-10-30 | any | 2026.10.30 | Before 2026.10.30: no head start (a press waits for the voice link), stored voice notes, video review or overnight update. | no | 2026.10.30, 2026.10.20, 2026.10.11 (code review) |
-| **1.40.0** | 2026-10-21 | any | any | nothing | no | 2026.10.20, 2026.10.11, 2026.10.10 (code review) |
 
 ## Breaking changes
 
